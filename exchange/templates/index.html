@@ -3,5 +3,93 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-<p>Это главная страница, позже здесь будет список вещей для обмена</p>
+<style>
+   
+    .pagination .page-link,
+    .pagination .page-item.active .page-link,
+    .pagination .page-item.disabled .page-link {
+        background-color: #6c757d !important; /* Bootstrap secondary */
+        color: #fff !important;
+        border: 1px solid #6c757d !important;
+    }
+    
+    .pagination .page-item.active .page-link {
+        background-color: #495057 !important; /* более темный для активного */
+        border-color: #495057 !important;
+        color: #fff !important;
+    }
+    
+    .pagination .page-item.disabled .page-link {
+        background-color: #adb5bd !important; /* светло-серый для отключенных */
+        border-color: #adb5bd !important;
+        color: #fff !important;
+    }
+    
+    .pagination .page-link:hover {
+        background-color: #5a6268 !important;
+        border-color: #545b62 !important;
+        color: #fff !important;
+    }
+    </style>
+<h1>Все объявления</h1>
+<div class="row">
+  {% for item in page_obj %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if item.image_url %}
+          <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.title }}">
+        {% else %}
+          <img src="https://via.placeholder.com/300x200?text=Нет+фото" class="card-img-top" alt="Нет фото">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
+          <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
+          <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
+          <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>Объявлений пока нет.</p>
+  {% endfor %}
+</div>
+
+{% if page_obj.has_other_pages %}
+<nav aria-label="Постраничная навигация">
+  <ul class="pagination justify-content-center mt-4">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">&laquo;</span>
+      </li>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">{{ num }}</span>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">&raquo;</span>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
 {% endblock %}

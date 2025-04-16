@@ -1,0 +1,202 @@
+{
+    "users": [
+      {"username": "alice", "password": "testpass1"},
+      {"username": "bob", "password": "testpass1"},
+      {"username": "carol", "password": "testpass1"},
+      {"username": "dave", "password": "testpass1"}
+    ],
+    "items": [
+      {
+        "title": "Диван IKEA",
+        "description": "Практически новый диван, удобный.",
+        "image_url": "https://via.placeholder.com/300x200?text=Диван",
+        "category": "мебель",
+        "condition": "new",
+        "user": "alice"
+      },
+      {
+        "title": "Старый телевизор",
+        "description": "Честно, он работает.",
+        "image_url": "",
+        "category": "электроника",
+        "condition": "used",
+        "user": "bob"
+      },
+      {
+        "title": "Гантели 10кг",
+        "description": "Для настоящих качков!",
+        "image_url": "",
+        "category": "спортинвентарь",
+        "condition": "used",
+        "user": "carol"
+      },
+      {
+        "title": "Гарри Поттер (серия)",
+        "description": "Все 7 книг на русском.",
+        "image_url": "",
+        "category": "книги",
+        "condition": "used",
+        "user": "dave"
+      },
+      {
+        "title": "Стул офисный",
+        "description": "Почти не скрипит.",
+        "image_url": "",
+        "category": "мебель",
+        "condition": "used",
+        "user": "alice"
+      },
+      {
+        "title": "Кофеварка Philips",
+        "description": "Готовит отличный кофе.",
+        "image_url": "",
+        "category": "электроника",
+        "condition": "new",
+        "user": "bob"
+      },
+      {
+        "title": "Бутсы Nike",
+        "description": "Отличное состояние, 43 размер.",
+        "image_url": "",
+        "category": "спортинвентарь",
+        "condition": "used",
+        "user": "carol"
+      },
+      {
+        "title": "Атлас по анатомии",
+        "description": "Идеален для студентов.",
+        "image_url": "",
+        "category": "книги",
+        "condition": "new",
+        "user": "dave"
+      },
+      {
+        "title": "Кровать односпальная",
+        "description": "С матрасом.",
+        "image_url": "",
+        "category": "мебель",
+        "condition": "used",
+        "user": "alice"
+      },
+      {
+        "title": "Колонка Bluetooth",
+        "description": "Громкая и легкая.",
+        "image_url": "",
+        "category": "электроника",
+        "condition": "new",
+        "user": "bob"
+      },
+      {
+        "title": "Велосипед",
+        "description": "Проехал 1000 км, всё супер.",
+        "image_url": "",
+        "category": "спортинвентарь",
+        "condition": "used",
+        "user": "carol"
+      },
+      {
+        "title": "Шекспир, собрание сочинений",
+        "description": "В оригинале.",
+        "image_url": "",
+        "category": "книги",
+        "condition": "used",
+        "user": "dave"
+      },
+      {
+        "title": "Табурет",
+        "description": "Для кухни.",
+        "image_url": "",
+        "category": "мебель",
+        "condition": "new",
+        "user": "alice"
+      },
+      {
+        "title": "Микроволновка Samsung",
+        "description": "Работает, внешний вид не очень.",
+        "image_url": "",
+        "category": "электроника",
+        "condition": "used",
+        "user": "bob"
+      },
+      {
+        "title": "Ролики",
+        "description": "Почти не катался.",
+        "image_url": "",
+        "category": "спортинвентарь",
+        "condition": "new",
+        "user": "carol"
+      },
+      {
+        "title": "Книга по Python",
+        "description": "Современный учебник.",
+        "image_url": "",
+        "category": "книги",
+        "condition": "new",
+        "user": "dave"
+      },
+      {
+        "title": "Шкаф икея",
+        "description": "Высокий и удобный.",
+        "image_url": "",
+        "category": "мебель",
+        "condition": "used",
+        "user": "alice"
+      },
+      {
+        "title": "Фитнес браслет",
+        "description": "Следит за шагами.",
+        "image_url": "",
+        "category": "электроника",
+        "condition": "used",
+        "user": "bob"
+      },
+      {
+        "title": "Скакалка",
+        "description": "Новая, ни разу не прыгали.",
+        "image_url": "",
+        "category": "спортинвентарь",
+        "condition": "new",
+        "user": "carol"
+      },
+      {
+        "title": "Детективы Агаты Кристи",
+        "description": "10 книг.",
+        "image_url": "",
+        "category": "книги",
+        "condition": "used",
+        "user": "dave"
+      }
+    ],
+    "exchange_proposals": [
+      {
+        "item_sender_title": "Диван IKEA",
+        "item_receiver_title": "Кофеварка Philips",
+        "comment": "Готов поменяться сразу, нужен хороший кофе.",
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Бутсы Nike",
+        "item_receiver_title": "Велосипед",
+        "comment": "Обувка на транспорт — выгодно!", 
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Гарри Поттер (серия)",
+        "item_receiver_title": "Детективы Агаты Кристи",
+        "comment": "Обмен классикой на классику.",
+        "status": "accepted"
+      },
+      {
+        "item_sender_title": "Табурет",
+        "item_receiver_title": "Книга по Python",
+        "comment": "Очень хочу учиться программировать!",
+        "status": "rejected"
+      },
+      {
+        "item_sender_title": "Колонка Bluetooth",
+        "item_receiver_title": "Фитнес браслет",
+        "comment": "Поменяю звук на здоровье.",
+        "status": "pending"
+      }
+    ]
+  }
