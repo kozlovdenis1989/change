@@ -42,7 +42,9 @@
           <img src="https://via.placeholder.com/300x200?text=Нет+фото" class="card-img-top" alt="Нет фото">
         {% endif %}
         <div class="card-body">
-          <h5 class="card-title">{{ item.title }}</h5>
+            <h4 class="card-title">
+                <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
+              </h4>
           <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
