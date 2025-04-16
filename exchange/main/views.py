@@ -19,11 +19,31 @@ def register(request):
 # Главная
 def home(request):
     items_list = Item.objects.all().order_by('-created_at')
-    paginator = Paginator(items_list, 6)  
 
+    category = request.GET.get('category')
+    condition = request.GET.get('condition')
+
+    if category:
+        items_list = items_list.filter(category=category)
+    if condition:
+        items_list = items_list.filter(condition=condition)
+
+    paginator = Paginator(items_list, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'index.html', {'page_obj': page_obj})
+
+    # Передаем выбранные значения и списки для селектов
+    categories = Item.CATEGORY_CHOICES
+    conditions = Item.CONDITIONS
+
+    context = {
+        'page_obj': page_obj,
+        'categories': categories,
+        'conditions': conditions,
+        'selected_category': category,
+        'selected_condition': condition,
+    }
+    return render(request, 'index.html', context)
 
 # Детали
 def item_detail(request, pk):

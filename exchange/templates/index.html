@@ -31,7 +31,23 @@
         color: #fff !important;
     }
     </style>
-<h1>Все объявления</h1>
+<form method="get" class="form-inline mb-3">
+    <label for="category" class="mr-2">Категория:</label>
+    <select name="category" id="category" class="form-control mr-3">
+        <option value="">Все</option>
+        {% for val, label in categories %}
+            <option value="{{ val }}" {% if val == selected_category %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+    </select>
+    <label for="condition" class="mr-2">Состояние:</label>
+    <select name="condition" id="condition" class="form-control mr-3">
+        <option value="">Все</option>
+        {% for val, label in conditions %}
+            <option value="{{ val }}" {% if val == selected_condition %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-secondary">Фильтровать</button>
+</form>
 <div class="row">
   {% for item in page_obj %}
     <div class="col-md-4 mb-4">
