@@ -3,23 +3,37 @@ services:
     build: .
     command: >
       sh -c "python exchange/manage.py migrate &&
-             python exchange/manage.py runserver 0.0.0.0:8000"
+             python exchange/manage.py runserver 0.0.0.0:${APP_PORT}"
     volumes:
       - ./exchange:/app/exchange
     ports:
-      - "8000:8000"  # Пробрасываем порт
+      - "${APP_PORT}:${APP_PORT}"  # Пробрасываем порт
     depends_on:
       - db
     env_file:
         - .env
+    networks:
+      - network
 
   db:
     image: postgres:alpine  
     restart: always
     env_file:
         - .env
+
+
+        
+    # ports:
+    #   - "5433:${POSTGRES_PORT}"
+    # command: -p ${POSTGRES_PORT}
     volumes:
       - postgres_data:/var/lib/postgresql/data  # Сохраняем данные между запусками
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
 
 volumes:
   postgres_data:

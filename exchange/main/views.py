@@ -10,7 +10,12 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('item_list')
+            return redirect('home')
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+
+# Главная, вещи
+def home(request):
+    content = None
+    return render(request, 'index.html', content)

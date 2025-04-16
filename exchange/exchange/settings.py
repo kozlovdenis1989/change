@@ -70,6 +70,8 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'exchange.wsgi.application'
 
 
@@ -77,6 +79,7 @@ WSGI_APPLICATION = 'exchange.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'localhost')
+# POSTGRES_HOST = 'localhost'
 POSTGRES_PORT = os.environ.get('POSTGRES_PORT', 5432)
 
 DATABASES = {

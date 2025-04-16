@@ -14,7 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY exchange ./exchange
 
 
-# # Команда для запуска приложения
-# CMD ["python3", "exchange.manage.py", "migrate"]
-# CMD ["python3", "exchange.manage.py", "runserver"]
+
 
