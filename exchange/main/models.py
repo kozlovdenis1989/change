@@ -6,11 +6,21 @@ class Item(models.Model):
         ('new', 'Новый'),
         ('used', 'Б/У'),
     ]
+
+    CATEGORY_CHOICES = [
+        ('мебель', 'Мебель'),
+        ('электроника', 'Электроника'),
+        ('книги', 'Книги'),
+        ('спортинвентарь', 'Спортинвентарь'),
+    ]
+
+    
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='items')
     title = models.CharField(max_length=255)
     description = models.TextField()
     image_url = models.URLField(blank=True, null=True)
-    category = models.CharField(max_length=100)
+    category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
     condition = models.CharField(max_length=10, choices=CONDITIONS)
     created_at = models.DateTimeField(auto_now_add=True)
 
