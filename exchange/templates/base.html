@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Платформа для обмена вещами{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar.bg-secondary {
+            background-color: #6c757d !important;
+        }
+        .navbar .nav-link,
+        .navbar .navbar-brand,
+        .navbar .navbar-text {
+            color: #fff !important;
+            font-weight: bold;
+        }
+        .navbar .nav-link:hover {
+            color: #e2e6ea !important;
+        }
+        /* Для поисковой формы белый инпут */
+        .navbar .form-control {
+            background-color: #fff;
+            color: #343a40;
+        }
+        .navbar .btn-outline-light {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary">
+        <h3 class="navbar-brand" href="#">Обмен Вещами</h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Вещи</a>
+                </li> 
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Список предложений обмена</a>
+                </li> 
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Мои вещи</a>
+                    </li> 
+                {% endif %}
+            </ul>
+            
+            <form class="form-inline my-2 my-lg-0 mr-2">
+                <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
+            </form>
+            
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <span class="navbar-text">
+                            Здравствуйте, {{ user.username }}   
+                            
+                            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link p-0 font-weight-bold text-white" style="background:none;"><h5>Выход</h5></button>
+                            </form>
+                        </span>
+                        
+                    </li>
+                    
+                    
+                {% else %}
+                    <li class="nav-item">
+                        <span class="navbar-text">Вы не авторизованы</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
