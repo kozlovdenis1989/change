@@ -3,8 +3,8 @@
 {% block title %}Мои объявления{% endblock %}
 
 {% block content %}
-<h2>Мои объявления</h2>
-
+<a href="{% url 'create_item' %}" class="btn btn-sm btn-dark mt-2"><h4>Создать объявление</h4></a>
+<p></p>
 <div class="row">
   {% for item in items %}
     <div class="col-md-4 mb-4">
@@ -22,8 +22,9 @@
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
           <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
+          <a href="{% url 'edit_item' item.pk %}" class="btn btn-sm btn-dark mt-2">Редактировать</a>
         </div>
-        
+
       </div>
     </div>
   {% empty %}

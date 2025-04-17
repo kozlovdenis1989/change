@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Item, ExchangeProposal
+from .forms import ItemForm
 
 # Регистрация пользователя
 def register(request):
@@ -69,10 +70,36 @@ def item_detail(request, pk):
     return render(request, 'detail.html', {'item': item})
 
 
-@login_required  # доступ только для авторизованных
+@login_required  
 def my_items(request):
     user_items = Item.objects.filter(user=request.user).order_by('-created_at')
     context = {
         'items': user_items,
     }
     return render(request, 'my_items.html', context)
+
+
+
+@login_required
+def edit_item(request, pk):
+    item = get_object_or_404(Item, pk=pk, user=request.user)  # чтобы редактировал только владелец
+    if request.method == 'POST':
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('my_items')
+    else:
+        form = ItemForm(instance=item)
+    return render(request, 'create_or_edit_item.html', {'form': form})
+
+@login_required
+def create_item(request):
+    # чтобы редактировал только владелец
+    if request.method == 'POST':
+        form = ItemForm()
+        if form.is_valid():
+            form.save()
+            return redirect('my_items')
+    else:
+        form = ItemForm()
+    return render(request, 'create_or_edit_item.html', {'form': form})
