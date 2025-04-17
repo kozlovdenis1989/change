@@ -1,12 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Мои объявления{% endblock %}
+{% block title %}Выбор своего объявления для обмена{% endblock %}
 
 {% block content %}
-<a href="{% url 'create_item' %}" class="btn btn-sm btn-dark mt-2"><h5>Создать объявление</h5></a>
-<p></p>
-
-<p></p>
 <div class="row">
   {% for item in items %}
     <div class="col-md-4 mb-4">
@@ -18,22 +14,18 @@
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">
-            <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
+            <p class="card-text"><strong>Название:</strong> {{ item.title }}</p>
           </h5>
           <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
           <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
-          <a href="{% url 'edit_item' item.pk %}" class="btn btn-sm btn-dark mt-2">Редактировать</a>
+          <a href="{% url 'create_proposal_with_my_item' pk_other item.pk %}" class="btn btn-sm btn-dark mt-2">Выбрать для обмена</a>
         </div>
-
       </div>
     </div>
   {% empty %}
-    <p>У вас пока нет объявлений.</p>
+    <p>У вас нет объявлений для обмена.</p>
   {% endfor %}
 </div>
-
-
-
 {% endblock %}

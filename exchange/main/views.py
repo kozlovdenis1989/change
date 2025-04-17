@@ -5,7 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Item, ExchangeProposal
-from .forms import ItemForm
+from .forms import ItemForm, ExchangeProposalForm
 
 # Регистрация пользователя
 def register(request):
@@ -94,7 +94,6 @@ def edit_item(request, pk):
 
 @login_required
 def create_item(request):
-    # чтобы редактировал только владелец
     if request.method == 'POST':
         form = ItemForm()
         if form.is_valid():
@@ -102,4 +101,34 @@ def create_item(request):
             return redirect('my_items')
     else:
         form = ItemForm()
-    return render(request, 'create_or_edit_item.html', {'form': form})
+    return render(request, 'create_or_edit_item.html', {'form': form, 'title': 'Создать объявление'})
+
+@login_required
+def create_proposal(request, pk_other, pk_my=None):
+    other_item = get_object_or_404(Item, pk=pk_other)
+
+    if pk_my is None:
+        used_item_ids = ExchangeProposal.objects.filter(item_sender__user=request.user).values_list('item_sender_id', flat=True)
+        user_items = Item.objects.filter(user=request.user).exclude(id__in=used_item_ids).order_by('-created_at')
+
+        context = {
+            'items': user_items,
+            'pk_other': pk_other,
+        }
+        return render(request, 'create_proposal.html', context)
+    
+    
+
+
+    my_item = get_object_or_404(Item, pk=pk_my, user=request.user)
+
+    if request.method == 'POST':
+        form = ExchangeProposalForm(request.POST, item_sender=my_item, item_receiver=other_item)
+        if form.is_valid():
+            form.save()
+            return redirect('my_items')
+    else:
+        form = ExchangeProposalForm(item_sender=my_item, item_receiver=other_item)
+
+    return render(request, 'create_or_edit_item.html', {'form': form, 'title': 'Комментарий к обмену'})
+    

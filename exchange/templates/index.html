@@ -68,6 +68,9 @@
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
           <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
+          {% if user.is_authenticated %}
+          <a href="{% url 'create_proposal' item.pk %}" class="btn btn-sm btn-dark mt-2">Предложить обмен</a>
+          {% endif %}
         </div>
       </div>
     </div>

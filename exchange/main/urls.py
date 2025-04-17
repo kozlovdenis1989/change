@@ -1,6 +1,6 @@
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
-from .views import register, home, item_detail, my_items, edit_item, create_item
+from .views import register, home, item_detail, my_items, edit_item, create_item, create_proposal
 
 urlpatterns = [
     path('', home, name='home'),
@@ -11,6 +11,10 @@ urlpatterns = [
     path('my-items/', my_items, name='my_items'),
     path('item/create/', create_item, name='create_item'),
     path('item/<int:pk>/edit/', edit_item, name='edit_item'),
+    path('create_proposal/<int:pk_other>/', create_proposal, name='create_proposal'),
+    path('create_proposal/<int:pk_other>/<int:pk_my>/', create_proposal, name='create_proposal_with_my_item')
+
+    
 
        
 ]
