@@ -47,6 +47,7 @@
             <option value="{{ val }}" {% if val == selected_condition %}selected{% endif %}>{{ label }}</option>
         {% endfor %}
     </select>
+    <input class="form-control mr-sm-2"  name="search" type="search" placeholder="Поиск" aria-label="Поиск" value="{{ search }}">
     <button type="submit" class="btn btn-secondary">Фильтровать</button>
 </form>
 
@@ -83,7 +84,7 @@
       <ul class="pagination justify-content-center mt-4">
         {% if page_obj.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&category={{ selected_category }}&condition={{ selected_condition }}">&laquo;</a>
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&search={{ search }}&category={{ selected_category }}&condition={{ selected_condition }}">&laquo;</a>
           </li>
         {% else %}
           <li class="page-item disabled">
@@ -98,14 +99,14 @@
             </li>
           {% else %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ num }}&category={{ selected_category }}&condition={{ selected_condition }}">{{ num }}</a>
+              <a class="page-link" href="?page={{ num }}&search={{ search }}&category={{ selected_category }}&condition={{ selected_condition }}">{{ num }}</a>
             </li>
           {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}&category={{ selected_category }}&condition={{ selected_condition }}">&raquo;</a>
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}&search={{ search }}&category={{ selected_category }}&condition={{ selected_condition }}">&raquo;</a>
           </li>
         {% else %}
           <li class="page-item disabled">

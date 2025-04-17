@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Item, ExchangeProposal
@@ -21,6 +22,8 @@ def home(request):
     
     category = request.GET.get('category', "")
     condition = request.GET.get('condition', "")
+    query = request.GET.get('search', "")
+
     filter_params = {}
 
     if category:
@@ -29,6 +32,11 @@ def home(request):
         filter_params['condition'] = condition
 
     items_list = Item.objects.filter(**filter_params).order_by('-created_at')
+
+    if query:
+        items_list = items_list.filter(
+        Q(title__icontains=query) | Q(description__icontains=query)
+        )
 
     paginator = Paginator(items_list, 3)
     page_number = request.GET.get('page', 1)
@@ -50,6 +58,7 @@ def home(request):
         'conditions': conditions,
         'selected_category': category,
         'selected_condition': condition,
+        'search': query
     }
     return render(request, 'index.html', context)
 
