@@ -31,6 +31,7 @@
         color: #fff !important;
     }
     </style>
+
 <form method="get" class="form-inline mb-3">
     <label for="category" class="mr-2">Категория:</label>
     <select name="category" id="category" class="form-control mr-3">
@@ -48,6 +49,7 @@
     </select>
     <button type="submit" class="btn btn-secondary">Фильтровать</button>
 </form>
+
 <div class="row">
   {% for item in page_obj %}
     <div class="col-md-4 mb-4">
@@ -58,9 +60,9 @@
           <img src="https://via.placeholder.com/300x200?text=Нет+фото" class="card-img-top" alt="Нет фото">
         {% endif %}
         <div class="card-body">
-            <h4 class="card-title">
-                <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
-              </h4>
+          <h5 class="card-title">
+            <a href="{% url 'item_detail' item.pk %}" class="text-white">{{ item.title }}</a>
+          </h5>
           <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
@@ -73,41 +75,49 @@
   {% endfor %}
 </div>
 
-{% if page_obj.has_other_pages %}
-<nav aria-label="Постраничная навигация">
-  <ul class="pagination justify-content-center mt-4">
-    {% if page_obj.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
-      </li>
-    {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">&laquo;</span>
-      </li>
+
+
+
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Постраничная навигация">
+      <ul class="pagination justify-content-center mt-4">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}&category={{ selected_category }}&condition={{ selected_condition }}">&laquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&laquo;</span>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active">
+              <span class="page-link">{{ num }}</span>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ num }}&category={{ selected_category }}&condition={{ selected_condition }}">{{ num }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}&category={{ selected_category }}&condition={{ selected_condition }}">&raquo;</a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&raquo;</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
     {% endif %}
 
-    {% for num in page_obj.paginator.page_range %}
-      {% if page_obj.number == num %}
-        <li class="page-item active" aria-current="page">
-          <span class="page-link">{{ num }}</span>
-        </li>
-      {% else %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
+  
 
-    {% if page_obj.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
-      </li>
-    {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">&raquo;</span>
-      </li>
-    {% endif %}
-  </ul>
-</nav>
-{% endif %}
+
+
 {% endblock %}

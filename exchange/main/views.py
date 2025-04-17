@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Item, ExchangeProposal
@@ -18,19 +18,27 @@ def register(request):
 
 # Главная
 def home(request):
-    items_list = Item.objects.all().order_by('-created_at')
-
-    category = request.GET.get('category')
-    condition = request.GET.get('condition')
+    
+    category = request.GET.get('category', "")
+    condition = request.GET.get('condition', "")
+    filter_params = {}
 
     if category:
-        items_list = items_list.filter(category=category)
+        filter_params['category'] = category
     if condition:
-        items_list = items_list.filter(condition=condition)
+        filter_params['condition'] = condition
 
-    paginator = Paginator(items_list, 6)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    items_list = Item.objects.filter(**filter_params).order_by('-created_at')
+
+    paginator = Paginator(items_list, 3)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
     # Передаем выбранные значения и списки для селектов
     categories = Item.CATEGORY_CHOICES
