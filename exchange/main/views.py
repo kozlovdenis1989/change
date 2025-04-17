@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Item, ExchangeProposal
 
@@ -66,3 +67,12 @@ def home(request):
 def item_detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
     return render(request, 'detail.html', {'item': item})
+
+
+@login_required  # доступ только для авторизованных
+def my_items(request):
+    user_items = Item.objects.filter(user=request.user).order_by('-created_at')
+    context = {
+        'items': user_items,
+    }
+    return render(request, 'my_items.html', context)
