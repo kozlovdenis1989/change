@@ -61,7 +61,7 @@
         {% endif %}
         <div class="card-body">
           <h5 class="card-title">
-            <a href="{% url 'item_detail' item.pk %}" class="text-white">{{ item.title }}</a>
+            <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
           </h5>
           <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
