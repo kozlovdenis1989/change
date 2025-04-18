@@ -12,7 +12,7 @@
         <p><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
         <p><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
         <p><strong>Владелец:</strong> {{ item.user.username }}</p>
-        <a href="{% url 'my_items' %}" class="btn btn-secondary mt-2">Назад к списку</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-2">Назад к списку</a>
     </div>
 </div>
 {% endblock %}
