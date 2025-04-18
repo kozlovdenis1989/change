@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ item.title }}{% endblock %}
+{% block content %}
+<div class="card mb-4">
+    {% if item.image_url %}
+        <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.title }}">
+    {% endif %}
+    <div class="card-body">
+        <h3 class="card-title">{{ item.title }}</h3>
+        <p><strong>Описание:</strong> {{ item.description }}</p>
+        <p><strong>Категория:</strong> {{ item.get_category_display }}</p>
+        <p><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
+        <p><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
+        <p><strong>Владелец:</strong> {{ item.user.username }}</p>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-2">Назад к списку</a>
+    </div>
+</div>
+{% endblock %}

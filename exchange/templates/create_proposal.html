@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Выбор своего объявления для обмена{% endblock %}
+
+{% block content %}
+<div class="row">
+  {% for item in items %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if item.image_url %}
+          <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.title }}">
+        {% else %}
+          <img src="https://via.placeholder.com/300x200?text=Нет+фото" class="card-img-top" alt="Нет фото">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">
+            <p class="card-text"><strong>Название:</strong> {{ item.title }}</p>
+          </h5>
+          <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
+          <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
+          <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
+          <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
+          <a href="{% url 'create_proposal_with_my_item' pk_other item.pk %}" class="btn btn-sm btn-dark mt-2">Выбрать для обмена</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>У вас нет объявлений для обмена.</p>
+  {% endfor %}
+</div>
+{% endblock %}

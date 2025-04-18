@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Мои объявления{% endblock %}
+
+{% block content %}
+<a href="{% url 'create_item' %}" class="btn btn-sm btn-dark mt-2"><h5>Создать объявление</h5></a>
+<p></p>
+
+<p></p>
+<div class="row">
+  {% for item in items %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        {% if item.image_url %}
+          <img src="{{ item.image_url }}" class="card-img-top" alt="{{ item.title }}">
+        {% else %}
+          <img src="https://via.placeholder.com/300x200?text=Нет+фото" class="card-img-top" alt="Нет фото">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
+          </h5>
+          
+          <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
+          <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
+          <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
+          <a href="{% url 'edit_item' item.pk %}" class="btn btn-sm btn-dark mt-2">Редактировать</a>
+          <a href="{% url 'delete_item' item.pk %}" class="btn btn-sm btn-danger mt-2">Удалить объявление</a>
+          {% if item.pk in item_sender %}
+         
+          <a href="{% url 'delete_proposal' item.pk %}" class="btn btn-sm btn-secondary mt-2">Удалить предложение</a>
+          {% endif %}
+
+
+
+          
+        </div>
+
+      </div>
+    </div>
+  {% empty %}
+    <p>У вас пока нет объявлений.</p>
+  {% endfor %}
+</div>
+
+
+
+{% endblock %}

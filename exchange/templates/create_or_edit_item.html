@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-dark" type="submit">Сохранить</button>
+    <a href="{% url 'my_items' %}" class="btn btn-secondary ml-2">Отмена</a>
+</form>
+{% endblock %}

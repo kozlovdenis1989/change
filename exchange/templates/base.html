@@ -38,22 +38,21 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Вещи</a>
-                </li> 
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Список предложений обмена</a>
+                    <a class="nav-link" href="{% url 'home' %}">Все объявления</a>
                 </li> 
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Мои вещи</a>
+                        <a class="nav-link" href="{% url 'exchange_proposals' %}">Список предложений обмена</a>
                     </li> 
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'my_items' %}">Мои объявления</a>
+                    </li> 
+               
                 {% endif %}
+
             </ul>
             
-            <form class="form-inline my-2 my-lg-0 mr-2">
-                <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
-            </form>
             
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
