@@ -71,14 +71,19 @@ def home(request):
 # Детали
 def item_detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
+   
+    
     return render(request, 'detail.html', {'item': item})
 
 
 @login_required  
 def my_items(request):
     user_items = Item.objects.filter(user=request.user).order_by('-created_at')
+    item_sender = ExchangeProposal.objects.values_list("item_sender", flat=True)
+    print(item_sender)
     context = {
         'items': user_items,
+        'item_sender': item_sender
     }
     return render(request, 'my_items.html', context)
 
@@ -86,7 +91,8 @@ def my_items(request):
 
 @login_required
 def edit_item(request, pk):
-    item = get_object_or_404(Item, pk=pk, user=request.user)  # чтобы редактировал только владелец
+    title = 'Редактирование объявления'
+    item = get_object_or_404(Item, pk=pk, user=request.user)  
     if request.method == 'POST':
         form = ItemForm(request.POST, instance=item)
         if form.is_valid():
@@ -94,18 +100,41 @@ def edit_item(request, pk):
             return redirect('my_items')
     else:
         form = ItemForm(instance=item)
-    return render(request, 'create_or_edit_item.html', {'form': form})
+    return render(request, 'create_or_edit_item.html', {'form': form, 'title': title})
 
 @login_required
 def create_item(request):
     if request.method == 'POST':
-        form = ItemForm()
+        
+        form = ItemForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
+            item = form.save(commit=False)  
+            item.user = request.user 
             form.save()
             return redirect('my_items')
     else:
         form = ItemForm()
     return render(request, 'create_or_edit_item.html', {'form': form, 'title': 'Создать объявление'})
+
+@login_required
+def delete_item(request, pk):
+    
+    item= get_object_or_404(Item, pk=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('my_items')  
+    return render(request, 'delete.html', {'item': item})
+
+@login_required
+def delete_proposal(request, pk):
+    
+    proposal = get_object_or_404(ExchangeProposal, item_sender=pk)
+    if request.method == 'POST':
+        proposal.delete()
+        return redirect('my_items')  
+    return render(request, 'delete.html', {'item': proposal})
+    
 
 @login_required
 def create_proposal(request, pk_other, pk_my=None):
@@ -141,12 +170,21 @@ def exchange_proposals(request):
 
     sort_by = request.GET.get('sort', 'date')  # по умолчанию сортируем по дате
 
+    my_proposals = request.GET.get('my_proposals', '')
+    if my_proposals:
+        proposals = proposals.filter(
+            Q(item_sender__user=request.user) | Q(item_receiver__user=request.user)
+        )
+
+
+
     if sort_by == 'author':
         # Сортируем по отправителю (username)
         proposals = proposals.order_by('item_sender')
     elif sort_by == 'status':
         # Сортируем по статусу, а потом по дате
         proposals = proposals.order_by('status')
+    
     else:
         # По дате, по убыванию (последние сверху)
         proposals = proposals.order_by('-created_at')

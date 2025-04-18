@@ -20,11 +20,20 @@
           <h5 class="card-title">
             <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
           </h5>
-          <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
+          
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
           <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>
           <a href="{% url 'edit_item' item.pk %}" class="btn btn-sm btn-dark mt-2">Редактировать</a>
+          <a href="{% url 'delete_item' item.pk %}" class="btn btn-sm btn-danger mt-2">Удалить объявление</a>
+          {% if item.pk in item_sender %}
+         
+          <a href="{% url 'delete_proposal' item.pk %}" class="btn btn-sm btn-secondary mt-2">Удалить предложение</a>
+          {% endif %}
+
+
+
+          
         </div>
 
       </div>

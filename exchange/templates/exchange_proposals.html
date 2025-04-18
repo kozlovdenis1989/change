@@ -10,8 +10,11 @@
       <option value="date" {% if sort_by == 'date' %}selected{% endif %}>Дате</option>
       <option value="author" {% if sort_by == 'author' %}selected{% endif %}>Автору</option>
       <option value="status" {% if sort_by == 'status' %}selected{% endif %}>Статусу</option>
+      
   </select>
+  <button type="submit" name="my_proposals" value="true" class="btn btn-secondary btn-sm">Мои предложения</button>
 </form>
+
 
 {% if proposals %}
   <div class="list-group">

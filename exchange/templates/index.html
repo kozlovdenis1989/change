@@ -64,7 +64,7 @@
           <h5 class="card-title">
             <a href="{% url 'item_detail' item.pk %}" class="text-dark">{{ item.title }}</a>
           </h5>
-          <p class="card-text"><strong>Описание:</strong> {{ item.description }}</p>
+          
           <p class="card-text"><strong>Категория:</strong> {{ item.get_category_display }}</p>
           <p class="card-text"><strong>Состояние:</strong> {{ item.get_condition_display }}</p>
           <p class="card-text"><strong>Дата размещения:</strong> {{ item.created_at|date:"d.m.Y H:i" }}</p>

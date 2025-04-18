@@ -9,7 +9,7 @@
       {
         "title": "Диван IKEA",
         "description": "Практически новый диван, удобный.",
-        "image_url": "https://via.placeholder.com/300x200?text=Диван",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-u/wc1000/7390059294.jpg",
         "category": "мебель",
         "condition": "new",
         "user": "alice"
@@ -17,7 +17,7 @@
       {
         "title": "Старый телевизор",
         "description": "Честно, он работает.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-o/wc1000/7225007952.jpg",
         "category": "электроника",
         "condition": "used",
         "user": "bob"
@@ -25,7 +25,7 @@
       {
         "title": "Гантели 10кг",
         "description": "Для настоящих качков!",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-h/wc1000/6732929177.jpg",
         "category": "спортинвентарь",
         "condition": "used",
         "user": "carol"
@@ -33,7 +33,7 @@
       {
         "title": "Гарри Поттер (серия)",
         "description": "Все 7 книг на русском.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1/wc1000/6222180625.jpg",
         "category": "книги",
         "condition": "used",
         "user": "dave"
@@ -41,7 +41,7 @@
       {
         "title": "Стул офисный",
         "description": "Почти не скрипит.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-a/wc1000/6609441610.jpg",
         "category": "мебель",
         "condition": "used",
         "user": "alice"
@@ -49,7 +49,7 @@
       {
         "title": "Кофеварка Philips",
         "description": "Готовит отличный кофе.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-o/wc1000/7385458128.jpg",
         "category": "электроника",
         "condition": "new",
         "user": "bob"
@@ -57,7 +57,7 @@
       {
         "title": "Бутсы Nike",
         "description": "Отличное состояние, 43 размер.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-m/wc1000/7186880038.jpg",
         "category": "спортинвентарь",
         "condition": "used",
         "user": "carol"
@@ -65,7 +65,7 @@
       {
         "title": "Атлас по анатомии",
         "description": "Идеален для студентов.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7328670632.jpg",
         "category": "книги",
         "condition": "new",
         "user": "dave"
@@ -73,7 +73,7 @@
       {
         "title": "Кровать односпальная",
         "description": "С матрасом.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-h/wc1000/6662914037.jpg",
         "category": "мебель",
         "condition": "used",
         "user": "alice"
@@ -81,7 +81,7 @@
       {
         "title": "Колонка Bluetooth",
         "description": "Громкая и легкая.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-m/wc1000/6810913066.jpg",
         "category": "электроника",
         "condition": "new",
         "user": "bob"
@@ -89,7 +89,7 @@
       {
         "title": "Велосипед",
         "description": "Проехал 1000 км, всё супер.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-9/wc1000/7466491845.jpg",
         "category": "спортинвентарь",
         "condition": "used",
         "user": "carol"
@@ -97,7 +97,7 @@
       {
         "title": "Шекспир, собрание сочинений",
         "description": "В оригинале.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-h/wc1000/6976873133.jpg",
         "category": "книги",
         "condition": "used",
         "user": "dave"
@@ -105,7 +105,7 @@
       {
         "title": "Табурет",
         "description": "Для кухни.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-f/wc1000/6101263263.jpg",
         "category": "мебель",
         "condition": "new",
         "user": "alice"
@@ -113,7 +113,7 @@
       {
         "title": "Микроволновка Samsung",
         "description": "Работает, внешний вид не очень.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-e/wc1000/7302718058.jpg",
         "category": "электроника",
         "condition": "used",
         "user": "bob"
@@ -121,7 +121,7 @@
       {
         "title": "Ролики",
         "description": "Почти не катался.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-n/wc1000/7317096251.jpg",
         "category": "спортинвентарь",
         "condition": "new",
         "user": "carol"
@@ -129,7 +129,7 @@
       {
         "title": "Книга по Python",
         "description": "Современный учебник.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-g/wc1000/7244186452.jpg",
         "category": "книги",
         "condition": "new",
         "user": "dave"
@@ -137,7 +137,7 @@
       {
         "title": "Шкаф икея",
         "description": "Высокий и удобный.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-n/wc1000/7440833183.jpg",
         "category": "мебель",
         "condition": "used",
         "user": "alice"
@@ -145,7 +145,7 @@
       {
         "title": "Фитнес браслет",
         "description": "Следит за шагами.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-i/wc1000/7331143074.jpg",
         "category": "электроника",
         "condition": "used",
         "user": "bob"
@@ -153,7 +153,7 @@
       {
         "title": "Скакалка",
         "description": "Новая, ни разу не прыгали.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-p/wc1000/6367821133.jpg",
         "category": "спортинвентарь",
         "condition": "new",
         "user": "carol"
@@ -161,7 +161,7 @@
       {
         "title": "Детективы Агаты Кристи",
         "description": "10 книг.",
-        "image_url": "",
+        "image_url": "https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7131924236.jpg",
         "category": "книги",
         "condition": "used",
         "user": "dave"
@@ -169,34 +169,77 @@
     ],
     "exchange_proposals": [
       {
-        "item_sender_title": "Диван IKEA",
-        "item_receiver_title": "Кофеварка Philips",
+        "item_sender_title": "Диван IKEA",          
+        "item_receiver_title": "Кофеварка Philips", 
         "comment": "Готов поменяться сразу, нужен хороший кофе.",
         "status": "pending"
       },
       {
-        "item_sender_title": "Бутсы Nike",
-        "item_receiver_title": "Велосипед",
-        "comment": "Обувка на транспорт — выгодно!", 
+        "item_sender_title": "Стул офисный",       
+        "item_receiver_title": "Колонка Bluetooth",
+        "comment": "У меня классный стул, хочу музыку послушать.",
         "status": "pending"
       },
       {
-        "item_sender_title": "Гарри Поттер (серия)",
-        "item_receiver_title": "Детективы Агаты Кристи",
-        "comment": "Обмен классикой на классику.",
+        "item_sender_title": "Бутсы Nike",          
+        "item_receiver_title": "Микроволновка Samsung", 
+        "comment": "Обувка на технику — выгодно!", 
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Ролики",              
+        "item_receiver_title": "Гарри Поттер (серия)", 
+        "comment": "Интересна замена роликов на книги.",
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Гарри Поттер (серия)",   
+        "item_receiver_title": "Колонка Bluetooth", 
+        "comment": "Обмен классикой на музыку.",
         "status": "accepted"
       },
       {
-        "item_sender_title": "Табурет",
-        "item_receiver_title": "Книга по Python",
+        "item_sender_title": "Книга по Python",        
+        "item_receiver_title": "Шкаф икея",            
+        "comment": "Учёба в обмен на мебель.",
+        "status": "accepted"
+      },
+      {
+        "item_sender_title": "Табурет",                 
+        "item_receiver_title": "Книга по Python",       
         "comment": "Очень хочу учиться программировать!",
         "status": "rejected"
       },
       {
-        "item_sender_title": "Колонка Bluetooth",
-        "item_receiver_title": "Фитнес браслет",
+        "item_sender_title": "Шкаф икея",                
+        "item_receiver_title": "Велосипед",             
+        "comment": "Хотел бы поменять шкаф на велосипед.",
+        "status": "rejected"
+      },
+      {
+        "item_sender_title": "Колонка Bluetooth",        
+        "item_receiver_title": "Фитнес браслет",         
         "comment": "Поменяю звук на здоровье.",
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Микроволновка Samsung",    
+        "item_receiver_title": "Велосипед",              
+        "comment": "Хотел бы обновить кухонную технику.",
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Кровать односпальная",     
+        "item_receiver_title": "Скакалка",                
+        "comment": "Моя кровать против твоей скакалки?",
+        "status": "pending"
+      },
+      {
+        "item_sender_title": "Фитнес браслет",           
+        "item_receiver_title": "Табурет",                 
+        "comment": "Спортсмены меняются с мебелью?",
         "status": "pending"
       }
     ]
+    
   }
