@@ -119,21 +119,22 @@ def create_item(request):
 
 @login_required
 def delete_item(request, pk):
-    
+    title = 'Удаление объявления'
     item= get_object_or_404(Item, pk=pk)
+
     if request.method == 'POST':
         item.delete()
         return redirect('my_items')  
-    return render(request, 'delete.html', {'item': item})
+    return render(request, 'delete.html', {'item': item, 'title': title})
 
 @login_required
 def delete_proposal(request, pk):
-    
+    title = 'Удаление предложения'
     proposal = get_object_or_404(ExchangeProposal, item_sender=pk)
     if request.method == 'POST':
         proposal.delete()
         return redirect('my_items')  
-    return render(request, 'delete.html', {'item': proposal})
+    return render(request, 'delete.html', {'item': proposal, 'title': title})
     
 
 @login_required
