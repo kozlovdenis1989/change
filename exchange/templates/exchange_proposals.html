@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+<form method="get" class="mb-3">
+  <label for="sort">Сортировать по:</label>
+  <select name="sort" id="sort" onchange="this.form.submit()" class="form-control w-auto d-inline-block ml-2">
+      <option value="date" {% if sort_by == 'date' %}selected{% endif %}>Дате</option>
+      <option value="author" {% if sort_by == 'author' %}selected{% endif %}>Автору</option>
+      <option value="status" {% if sort_by == 'status' %}selected{% endif %}>Статусу</option>
+  </select>
+</form>
+
+{% if proposals %}
+  <div class="list-group">
+    {% for proposal in proposals %}
+  <div class="list-group-item mb-3">
+    
+    <p><strong>Отправитель:</strong> {{ proposal.item_sender.user.username }} — {{ proposal.item_sender.title }}</p>
+    <p><strong>Получатель:</strong> {{ proposal.item_receiver.user.username }} — {{ proposal.item_receiver.title }}</p>
+    <p><strong>Комментарий:</strong> {{ proposal.comment }}</p>
+    <p><strong>Статус:</strong> {{ proposal.get_status_display }}</p>
+    <p><strong>Дата:</strong> {{ proposal.created_at|date:"d.m.Y H:i" }}</p>
+
+    {% if user == proposal.item_receiver.user and proposal.status == 'pending' %}
+      <form method="post" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="proposal_id" value="{{ proposal.pk }}">
+        <button type="submit" name="status" value="accepted" class="btn btn-dark btn-sm">Принять</button>
+        <button type="submit" name="status" value="rejected" class="btn btn-secondary btn-sm">Отклонить</button>
+      </form>
+    {% endif %}
+  </div>
+{% endfor %}
+  </div>
+{% else %}
+  <p>Нет предложений обмена по заданным фильтрам.</p>
+{% endif %}
+
+{% endblock %}

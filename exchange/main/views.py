@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Item, ExchangeProposal
 from .forms import ItemForm, ExchangeProposalForm
+from django.http import HttpResponseForbidden
 
 # Регистрация пользователя
 def register(request):
@@ -34,6 +35,8 @@ def home(request):
         filter_params['condition'] = condition
 
     items_list = Item.objects.filter(**filter_params).order_by('-created_at')
+
+    
 
     if query:
         items_list = items_list.filter(
@@ -117,8 +120,6 @@ def create_proposal(request, pk_other, pk_my=None):
         }
         return render(request, 'create_proposal.html', context)
     
-    
-
 
     my_item = get_object_or_404(Item, pk=pk_my, user=request.user)
 
@@ -131,4 +132,48 @@ def create_proposal(request, pk_other, pk_my=None):
         form = ExchangeProposalForm(item_sender=my_item, item_receiver=other_item)
 
     return render(request, 'create_or_edit_item.html', {'form': form, 'title': 'Комментарий к обмену'})
+
+
+@login_required
+def exchange_proposals(request):
+    proposals = ExchangeProposal.objects.all()
+
+    sort_by = request.GET.get('sort', 'date')  # по умолчанию сортируем по дате
+
+    if sort_by == 'author':
+        # Сортируем по отправителю (username)
+        proposals = proposals.order_by('item_sender')
+    elif sort_by == 'status':
+        # Сортируем по статусу, а потом по дате
+        proposals = proposals.order_by('status')
+    else:
+        # По дате, по убыванию (последние сверху)
+        proposals = proposals.order_by('-created_at')
+
     
+    if request.method == 'POST':
+        proposal_id = request.POST.get('proposal_id')
+        new_status = request.POST.get('status')
+        if proposal_id and new_status in dict(ExchangeProposal.STATUS_CHOICES).keys():
+            try:
+                proposal = ExchangeProposal.objects.get(pk=proposal_id)
+            except ExchangeProposal.DoesNotExist:
+                proposal = None
+
+           
+            if proposal and proposal.item_receiver.user == request.user:
+                proposal.status = new_status
+                proposal.save()
+            else:
+                return HttpResponseForbidden("Нельзя изменить статус этого предложения.")
+
+        
+        from django.shortcuts import redirect
+        return redirect('exchange_proposals')
+
+    context = {
+        'proposals': proposals,
+        'title': 'Список предложений обмена',
+        'sort_by': sort_by,
+    }
+    return render(request, 'exchange_proposals.html', context)
