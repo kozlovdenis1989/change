@@ -36,7 +36,8 @@ def home(request):
 
     items_list = Item.objects.filter(**filter_params).order_by('-created_at')
 
-    
+    if request.user.is_authenticated:
+        items_list = items_list.filter(~Q(user=request.user.id) )
 
     if query:
         items_list = items_list.filter(
