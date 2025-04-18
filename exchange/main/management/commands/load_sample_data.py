@@ -11,7 +11,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--path',
             type=str,
-            default='main/sample_data.json',
+            default='exchange/main/sample_data.json',
             help='Путь к файлу с данными'
         )
 
