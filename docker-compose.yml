@@ -8,7 +8,7 @@ services:
     volumes:
       - ./exchange:/app/exchange
     ports:
-      - "${APP_PORT}:${APP_PORT}"  # Пробрасываем порт
+      - "${APP_PORT}:${APP_PORT}"  
     depends_on:
       - db
     env_file:

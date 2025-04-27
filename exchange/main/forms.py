@@ -9,10 +9,9 @@ class ItemForm(ModelForm):
 class ExchangeProposalForm(ModelForm):
     class Meta:
         model = ExchangeProposal
-        fields = ['comment']  # показываем только комментарий
+        fields = ['comment']  
 
     def __init__(self, *args, **kwargs):
-        # Передаем item_sender и item_receiver через kwargs и сохраняем их
         self.item_sender = kwargs.pop('item_sender', None)
         self.item_receiver = kwargs.pop('item_receiver', None)
         super().__init__(*args, **kwargs)

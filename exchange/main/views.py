@@ -8,7 +8,7 @@ from .models import Item, ExchangeProposal
 from .forms import ItemForm, ExchangeProposalForm
 from django.http import HttpResponseForbidden
 
-# Регистрация пользователя
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -20,7 +20,7 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
 
-# Главная
+
 def home(request):
     
     category = request.GET.get('category', "")
@@ -54,7 +54,6 @@ def home(request):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
-    # Передаем выбранные значения и списки для селектов
     categories = Item.CATEGORY_CHOICES
     conditions = Item.CONDITIONS
 
@@ -68,7 +67,7 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
-# Детали
+
 def item_detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
    
@@ -169,7 +168,7 @@ def create_proposal(request, pk_other, pk_my=None):
 def exchange_proposals(request):
     proposals = ExchangeProposal.objects.all()
 
-    sort_by = request.GET.get('sort', 'date')  # по умолчанию сортируем по дате
+    sort_by = request.GET.get('sort', 'date') 
 
     my_proposals = request.GET.get('my_proposals', '')
     if my_proposals:
@@ -180,14 +179,11 @@ def exchange_proposals(request):
 
 
     if sort_by == 'author':
-        # Сортируем по отправителю (username)
         proposals = proposals.order_by('item_sender')
     elif sort_by == 'status':
-        # Сортируем по статусу, а потом по дате
         proposals = proposals.order_by('status')
     
     else:
-        # По дате, по убыванию (последние сверху)
         proposals = proposals.order_by('-created_at')
 
     
